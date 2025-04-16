@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Employes;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -68,6 +69,8 @@ class AuthController extends Controller
     {
         try {
             $user = auth('api')->user();
+            // $employe = auth('api')->user()->employe;
+            $employes = auth('api')->user()->employes;
             return response()->json(['messages' => 'User found', 'user' => $user], 200);
         } catch (\Throwable $th) {
             return response()->json(['error' => 'User not found'], 404);
